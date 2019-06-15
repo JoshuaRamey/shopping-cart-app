@@ -1,0 +1,20 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+
+.content {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.productImage {
+  width: 315px;
+  height: 405px;
+}
+
+.test {
+  border: 1px solid red;
+}
