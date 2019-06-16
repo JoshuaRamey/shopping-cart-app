@@ -59,7 +59,7 @@ export default function ButtonAppBar(props) {
               </Button>
             );
           })}
-          <IconButton aria-label="Cart">
+          <IconButton aria-label="Cart" onClick={() => props.viewCart()}>
             <StyledBadge badgeContent={props.cart.length} color="primary">
               <ShoppingCartIcon />
             </StyledBadge>

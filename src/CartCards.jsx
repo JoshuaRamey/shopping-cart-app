@@ -6,8 +6,6 @@ import CardContent from "@material-ui/core/CardContent";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 
-import { categories } from "./storeItems.js";
-
 const useStyles = makeStyles({
   card: {
     minWidth: 275,
@@ -28,10 +26,10 @@ const useStyles = makeStyles({
   }
 });
 
-export default function ItemCards(props) {
+export default function CartCards(props) {
   const classes = useStyles();
 
-  return categories[props.categoryToDisplay].map(item => {
+  return props.shoppingCart.map(item => {
     return (
       <Card key={item.image} className={classes.card}>
         <CardContent>
