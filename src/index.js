@@ -25,6 +25,7 @@ class App extends React.Component {
 
   render() {
     console.log(this.state.cart);
+    console.log(this.state.paymentTemp);
 
     return (
       <div className="App">
@@ -68,7 +69,17 @@ class App extends React.Component {
               categoryToDisplay={this.state.category}
             />
           ) : (
-            <CartCards shoppingCart={this.state.cart} />
+            <CartCards
+              shoppingCart={this.state.cart}
+              removeFromCart={item => {
+                const array = [...this.state.cart];
+                const index = array.indexOf(item);
+                if (index !== -1) {
+                  array.splice(index, 1);
+                  this.setState({ cart: array });
+                }
+              }}
+            />
           )}
         </div>
       </div>

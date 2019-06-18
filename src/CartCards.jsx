@@ -44,10 +44,13 @@ export default function CartCards(props) {
           <Typography className={classes.pos} color="textSecondary">
             ${item.price} (excluding tax)
           </Typography>
+          <Typography className={classes.pos} color="textSecondary">
+            Quantity: {item.quantity}
+          </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => props.addToCart(item)}>
-            Add To Cart
+          <Button size="small" onClick={() => props.removeFromCart(item)}>
+            Remove from cart
           </Button>
         </CardActions>
       </Card>

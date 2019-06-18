@@ -31,7 +31,7 @@ const useStyles = makeStyles({
 export default function ItemCards(props) {
   const classes = useStyles();
 
-  return categories[props.categoryToDisplay].map(item => {
+  return categories[props.categoryToDisplay].map((item, index) => {
     return (
       <Card key={item.image} className={classes.card}>
         <CardContent>
@@ -48,7 +48,7 @@ export default function ItemCards(props) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small" onClick={() => props.addToCart(item)}>
+          <Button size="small" onClick={() => props.addToCart(item, index)}>
             Add To Cart
           </Button>
         </CardActions>
