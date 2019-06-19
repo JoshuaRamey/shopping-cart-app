@@ -49,13 +49,15 @@ class App extends React.Component {
           {this.state.view === "products" ? (
             <ItemCards
               addToCart={item => {
-                this.setState({
-                  cart: [...this.state.cart, item],
-                  paymentTemp: [
-                    ...this.state.paymentTemp,
-                    Number.parseInt(item.price, 10)
-                  ]
-                });
+                return this.state.cart.includes(item)
+                  ? ""
+                  : this.setState({
+                      cart: [...this.state.cart, item],
+                      paymentTemp: [
+                        ...this.state.paymentTemp,
+                        Number.parseInt(item.price, 10)
+                      ]
+                    });
               }}
               categoryToDisplay={this.state.category}
             />
