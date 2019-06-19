@@ -4,6 +4,7 @@ import ReactDOM from "react-dom";
 import ItemCards from "./ItemCards";
 import CartCards from "./CartCards";
 import AppBar from "./AppBar";
+import PaymentInfo from "./PaymentInfo";
 
 import "./styles.css";
 
@@ -24,9 +25,6 @@ class App extends React.Component {
   }
 
   render() {
-    console.log(this.state.cart);
-    console.log(this.state.paymentTemp);
-
     return (
       <div className="App">
         <AppBar
@@ -43,14 +41,7 @@ class App extends React.Component {
           }}
         />
         {this.state.view === "shoppingCart" ? (
-          <div>
-            <p>Subtotal: ${this.state.subtotal.toFixed(2)}</p>
-            <p>tax: ${(this.state.subtotal * 0.1).toFixed(2)}</p>
-            <p>
-              Total: $
-              {(this.state.subtotal * 0.1 + this.state.subtotal).toFixed(2)}
-            </p>
-          </div>
+          <PaymentInfo subtotal={this.state.subtotal} />
         ) : (
           ""
         )}
@@ -74,9 +65,20 @@ class App extends React.Component {
               removeFromCart={item => {
                 const array = [...this.state.cart];
                 const index = array.indexOf(item);
+                const ptemp = [...this.state.paymentTemp];
+                const priceIndex = ptemp.indexOf(
+                  Number.parseInt(item.price, 10)
+                );
+                const newSubtotal =
+                  this.state.subtotal - Number.parseInt(item.price, 10);
                 if (index !== -1) {
                   array.splice(index, 1);
-                  this.setState({ cart: array });
+                  ptemp.splice(priceIndex, 1);
+                  this.setState({
+                    cart: array,
+                    paymentTemp: ptemp,
+                    subtotal: newSubtotal
+                  });
                 }
               }}
             />
