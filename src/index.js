@@ -49,8 +49,18 @@ class App extends React.Component {
           {this.state.view === "products" ? (
             <ItemCards
               addToCart={item => {
+                const index = this.state.cart.indexOf(item);
+                const copy = [...this.state.cart];
+
                 return this.state.cart.includes(item)
-                  ? ""
+                  ? (copy[index].quantity++,
+                    this.setState({
+                      cart: copy,
+                      paymentTemp: [
+                        ...this.state.paymentTemp,
+                        Number.parseInt(item.price, 10)
+                      ]
+                    }))
                   : this.setState({
                       cart: [...this.state.cart, item],
                       paymentTemp: [
@@ -67,21 +77,29 @@ class App extends React.Component {
               removeFromCart={item => {
                 const array = [...this.state.cart];
                 const index = array.indexOf(item);
-                const ptemp = [...this.state.paymentTemp];
-                const priceIndex = ptemp.indexOf(
+                const paymentCopy = [...this.state.paymentTemp];
+                const priceIndex = paymentCopy.indexOf(
                   Number.parseInt(item.price, 10)
                 );
                 const newSubtotal =
                   this.state.subtotal - Number.parseInt(item.price, 10);
-                if (index !== -1) {
-                  array.splice(index, 1);
-                  ptemp.splice(priceIndex, 1);
-                  this.setState({
-                    cart: array,
-                    paymentTemp: ptemp,
-                    subtotal: newSubtotal
-                  });
-                }
+                return item.quantity > 1
+                  ? (array[index].quantity--,
+                    paymentCopy.splice(priceIndex, 1),
+                    this.setState({
+                      cart: array,
+                      paymentTemp: paymentCopy,
+                      subtotal: newSubtotal
+                    }))
+                  : index !== -1
+                  ? (array.splice(index, 1),
+                    paymentCopy.splice(priceIndex, 1),
+                    this.setState({
+                      cart: array,
+                      paymentTemp: paymentCopy,
+                      subtotal: newSubtotal
+                    }))
+                  : "";
               }}
             />
           )}

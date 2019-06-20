@@ -28,14 +28,14 @@ export default function PaymentInfo(props) {
             <TableCell component="th" scope="row">
               Subtotal
             </TableCell>
-            <TableCell align="right">{props.subtotal.toFixed(2)}</TableCell>
+            <TableCell align="right">${props.subtotal.toFixed(2)}</TableCell>
           </TableRow>
           <TableRow>
             <TableCell component="th" scope="row">
               Tax
             </TableCell>
             <TableCell align="right">
-              {(props.subtotal * 0.1).toFixed(2)}
+              ${(props.subtotal * 0.1).toFixed(2)}
             </TableCell>
           </TableRow>
           <TableRow>
@@ -43,7 +43,7 @@ export default function PaymentInfo(props) {
               Total
             </TableCell>
             <TableCell align="right">
-              {(props.subtotal * 0.1 + props.subtotal).toFixed(2)}
+              ${(props.subtotal * 0.1 + props.subtotal).toFixed(2)}
             </TableCell>
           </TableRow>
         </TableBody>

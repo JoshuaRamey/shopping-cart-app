@@ -46,7 +46,7 @@ export default function ButtonAppBar(props) {
       <AppBar position="static">
         <Toolbar>
           <Typography variant="h6" className={classes.title}>
-            Title
+            Logo
           </Typography>
           {categories.map(option => {
             return (
