@@ -1,5 +1,2 @@
 # shopping-cart-app
-(work-in-progress) A shopping cart simulator in React JS. Right now you can switch between product categories to be displayed
-and add them to your cart. The cart will display how many items it contains. Next I need to add an option to render items in the
-cart, display the total, and find a way to work with multiples of the same item in the cart at a time so as not to display
-duplicates in the render.
+(work-in-progress) A shopping cart simulator in React JS. Add items to the cart, the cart icon will display how many icons are in the cart at present. When viewing the cart there is a table which displays the subtotal, tax, and total payment due. Delete items from your cart and the payment info will update itself. All that's left is to make the app handle multiples of the same item in the cart by increasing item quantity rather than rendering the item twice. For now I disabled allowing more than one of an item to be added to the cart as a quick fix until I get time to work on this again.
